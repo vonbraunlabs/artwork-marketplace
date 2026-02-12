@@ -29,7 +29,7 @@ public class MarketplaceDbContext : DbContext
             entity.HasKey(e => e.ListingId);
             entity.HasIndex(e => e.ArtworkId);
             entity.HasIndex(e => e.TokenId);
-            entity.HasIndex(e => e.SellerId);
+            entity.HasIndex(e => e.SellerUserId);
             entity.HasIndex(e => e.IsActive);
             entity.HasIndex(e => e.MarketplacePartnerId);
             entity.Property(e => e.Price).HasPrecision(20, 8);
