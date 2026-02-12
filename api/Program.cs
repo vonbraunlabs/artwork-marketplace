@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ArtMarketplace.Api.Data;
+using ArtMarketplace.Api.Services;
 using ArtTokenization.Shared.Client;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,10 @@ builder.Services.AddHttpClient<ITokenizationApiClient, TokenizationApiClient>(cl
 {
     client.BaseAddress = new Uri(builder.Configuration["TokenizationApi:BaseUrl"] ?? "http://localhost:5001");
 });
+
+// Background Services
+builder.Services.AddHostedService<MarketplaceEventListenerService>();
+builder.Services.AddHostedService<ListingValidationService>();
 
 // CORS
 builder.Services.AddCors(options =>
