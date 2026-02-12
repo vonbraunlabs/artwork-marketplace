@@ -5,6 +5,19 @@
 CREATE DATABASE IF NOT EXISTS art_marketplace;
 USE art_marketplace;
 
+-- Users table
+CREATE TABLE IF NOT EXISTS Users (
+    UserId CHAR(36) PRIMARY KEY,
+    Email VARCHAR(255) NOT NULL UNIQUE,
+    PasswordHash VARCHAR(255) NOT NULL,
+    FullName VARCHAR(255) NOT NULL,
+    WalletAddress VARCHAR(42) NOT NULL UNIQUE,
+    CreatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    LastLoginAt DATETIME,
+    INDEX idx_email (Email),
+    INDEX idx_wallet (WalletAddress)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- MarketplaceListings table
 CREATE TABLE IF NOT EXISTS MarketplaceListings (
     ListingId CHAR(36) PRIMARY KEY,

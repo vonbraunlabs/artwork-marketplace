@@ -8,6 +8,7 @@ public class MarketplaceDbContext : DbContext
 {
     public MarketplaceDbContext(DbContextOptions<MarketplaceDbContext> options) : base(options) { }
 
+    public DbSet<User> Users { get; set; } = null!;
     public DbSet<MarketplaceListing> Listings { get; set; } = null!;
     public DbSet<MarketplacePartner> Partners { get; set; } = null!;
     public DbSet<Transaction> Transactions { get; set; } = null!;
@@ -15,6 +16,13 @@ public class MarketplaceDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(e => e.UserId);
+            entity.HasIndex(e => e.Email).IsUnique();
+            entity.HasIndex(e => e.WalletAddress).IsUnique();
+        });
 
         modelBuilder.Entity<MarketplaceListing>(entity =>
         {
