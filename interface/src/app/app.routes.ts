@@ -9,7 +9,7 @@ export const routes: Routes = [
   },
   {
     path: 'listings',
-    loadChildren: () => import('./features/listings/listings.routes').then(m => m.LISTING_ROUTES)
+    loadChildren: () => import('./features/listings/listings.routes').then(m => m.LISTINGS_ROUTES)
   },
   {
     path: 'auth',

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../../core/auth/auth.service';
-import { Web3Service } from '../../core/web3/web3.service';
+import { AuthService } from '../../../core/auth/auth.service';
+import { Web3Service } from '../../../core/web3/web3.service';
 
 @Component({
   selector: 'app-header',
