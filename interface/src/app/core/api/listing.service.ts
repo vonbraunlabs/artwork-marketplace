@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { MarketplaceListing, CreateListingRequest, SearchListingsRequest } from '../../shared/models/listing.model';
+import { MarketplaceListing, ListingsResponse, CreateListingRequest, SearchListingsRequest } from '../../shared/models/listing.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class ListingService {
     return this.http.post(this.apiUrl, request);
   }
 
-  getAll(search?: SearchListingsRequest): Observable<MarketplaceListing[]> {
+  getAll(search?: SearchListingsRequest): Observable<ListingsResponse> {
     let params = new HttpParams();
     
     if (search?.category) params = params.set('category', search.category);
@@ -25,7 +25,7 @@ export class ListingService {
     if (search?.page) params = params.set('page', search.page.toString());
     if (search?.pageSize) params = params.set('pageSize', search.pageSize.toString());
 
-    return this.http.get<MarketplaceListing[]>(this.apiUrl, { params });
+    return this.http.get<ListingsResponse>(this.apiUrl, { params });
   }
 
   getById(id: string): Observable<MarketplaceListing> {

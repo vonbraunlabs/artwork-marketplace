@@ -16,7 +16,16 @@ export interface MarketplaceListing {
     description?: string;
     artistName: string;
     images?: string[];
+    category?: string;
+    isVerified?: boolean;
   };
+}
+
+export interface ListingsResponse {
+  items: MarketplaceListing[];
+  totalPages: number;
+  currentPage: number;
+  totalItems: number;
 }
 
 export interface CreateListingRequest {

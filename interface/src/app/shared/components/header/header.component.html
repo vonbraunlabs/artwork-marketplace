@@ -1,0 +1,27 @@
+<header class="header">
+  <div class="container">
+    <a routerLink="/" class="logo">ArtMarket</a>
+    
+    <nav class="nav">
+      <a routerLink="/listings" routerLinkActive="active">Browse</a>
+      @if (isAuthenticated) {
+        <a routerLink="/listings/create" routerLinkActive="active">Sell</a>
+        <a routerLink="/profile" routerLinkActive="active">Profile</a>
+      }
+    </nav>
+
+    <div class="actions">
+      @if (!isAuthenticated) {
+        <a routerLink="/auth/login" class="btn btn-secondary">Login</a>
+        <a routerLink="/auth/register" class="btn btn-primary">Sign Up</a>
+      } @else {
+        @if (!walletConnected) {
+          <button (click)="connectWallet()" class="btn btn-wallet">Connect Wallet</button>
+        } @else {
+          <span class="wallet-address">{{ walletAddress }}</span>
+        }
+        <button (click)="logout()" class="btn btn-secondary">Logout</button>
+      }
+    </div>
+  </div>
+</header>

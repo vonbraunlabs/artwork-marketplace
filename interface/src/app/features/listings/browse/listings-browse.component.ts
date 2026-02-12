@@ -364,8 +364,8 @@ export class ListingsBrowseComponent implements OnInit {
 
     this.listingService.getAll(filters).subscribe({
       next: (response) => {
-        this.listings = response.items || response;
-        this.totalPages = response.totalPages || 1;
+        this.listings = response.items;
+        this.totalPages = response.totalPages;
         this.loading = false;
       },
       error: (err) => {

@@ -293,6 +293,7 @@ export class ListingCreateComponent implements OnInit {
 
     const request = {
       artworkId: this.listingForm.value.artworkId,
+      tokenId: this.selectedArtwork?.tokenId || '',
       price: parseFloat(this.listingForm.value.price),
       paymentToken: this.listingForm.value.paymentToken,
       description: this.listingForm.value.description
